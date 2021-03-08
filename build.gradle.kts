@@ -25,10 +25,7 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
-	implementation("org.slf4j:slf4j-simple:2.0.0-alpha0")
-	implementation("com.pi4j:pi4j-core:2.0-SNAPSHOT")
-	implementation("com.pi4j:pi4j-plugin-raspberrypi:2.0-SNAPSHOT")
-	implementation("com.pi4j:pi4j-plugin-pigpio:2.0-SNAPSHOT")
+	implementation("com.pi4j:pi4j-core:1.4")
 }
 
 tasks.withType<KotlinCompile> {
