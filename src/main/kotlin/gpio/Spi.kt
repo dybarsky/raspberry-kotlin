@@ -13,7 +13,26 @@ class Spi {
         private const val CLOCK = 3
 
         private val DIGITS = arrayOf(
-                0xDF, 0x06, 0xEB, 0x6F, 0x37, 0x7D, 0xFD, 0x0E, 0xFE, 0x7E
+                0b11011111,
+                0b00000110,
+                0b11101011,
+                0b01101111,
+                0b00110111,
+                0b01111101,
+                0b11111101,
+                0b00001110,
+                0b11111110,
+                0b01111110
+        )
+
+        private val SEGMENTS = arrayOf(
+                0b00000011,
+                0b00000111,
+                0b00001111,
+                0b00011111,
+                0b00111111,
+                0b01111111,
+                0b11111111
         )
     }
 
@@ -27,6 +46,12 @@ class Spi {
         Gpio.digitalWrite(CLOCK, 0)
     }
 
+    suspend fun demo() {
+        countDown()
+//        segments()
+//        random()
+    }
+
     private suspend fun countDown() {
         DIGITS
             .reversed()
@@ -35,6 +60,13 @@ class Spi {
                 write(it)
                 delay(1_000)
             }
+    }
+
+    private suspend fun segments() {
+        SEGMENTS.forEach {
+            write(it)
+            delay(2_000)
+        }
     }
 
     private fun Random.generate(size: Int): List<Int> {
@@ -57,11 +89,6 @@ class Spi {
             write(data)
             delay(500)
         }
-    }
-
-    suspend fun demo() {
-        countDown()
-        random()
     }
 
     private suspend fun write(byte: Int) {
