@@ -1,2 +1,2 @@
-rootProject.name = "raspberry-pi-test"
+rootProject.name = "raspberry-kotlin"
 rootProject.buildFileName = "build.gradle.kts"

@@ -48,8 +48,8 @@ class Spi {
 
     suspend fun demo() {
         countDown()
-//        segments()
-//        random()
+        segments()
+        random()
     }
 
     private suspend fun countDown() {
