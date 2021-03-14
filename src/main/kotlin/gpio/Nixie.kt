@@ -5,7 +5,7 @@ import kotlinx.coroutines.delay
 import kotlin.random.Random
 
 
-class Spi {
+class Nixie {
 
     companion object {
 
