@@ -8,7 +8,7 @@ class Pot {
     companion object {
         private const val PIN_DISCHARGE = 28    // PIN 38
         private const val PIN_CHARGE = 29       // PIN 40
-        const val MAX = 50000
+        const val MAX = 20000
     }
 
     init {
