@@ -1,26 +1,58 @@
 @file:JvmName("App")
 
-import gpio.Spi
+import com.pi4j.io.gpio.GpioFactory
+import gpio.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.runBlocking
+import kotlin.coroutines.coroutineContext
 
 fun main(args: Array<String>): Unit =
     runBlocking {
 
-//        val gpio = GpioFactory.getInstance()
-//        val led = Led(gpio)
-//        led.on()
-//        delay(1000)
+        val gpio = GpioFactory.getInstance()
 
-            Spi().demo()
+        val nixie = Nixie()
+        val servo = Servo(gpio)
+        val led = Led(gpio)
+        val pwm = Pwm(gpio)
+        val pot = Pot()
 
 
 
-//        delay(10_000)
-
-//        while (true) {
-//            with (led) {
-//                if (isOn) off() else on()
-//            }
-//            delay(1000)
-//        }
+//        led.blinking()
+//        servo.demo()
+//        pwm.demo()
+//        nixie.demo()
     }
+
+private suspend fun Pot.read(callback: (Float) -> Unit) {
+    while (coroutineContext.isActive) {
+        val time = List(10) { read() }.average()
+        val percent = Pot.MAX / time
+    }
+}
+
+private suspend fun Led.blink() {
+    delay(1000)
+    while (coroutineContext.isActive) {
+        if (isOn) off() else on()
+        delay(1000)
+    }
+}
+
+private suspend fun Pwm.demo() {
+    min()
+    delay(1000)
+    half()
+    delay(1000)
+    max()
+    delay(1000)
+    off()
+}
+
+private suspend fun Servo.demo() {
+    min()
+    delay(1000)
+    max()
+}

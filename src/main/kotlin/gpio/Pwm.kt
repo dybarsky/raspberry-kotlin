@@ -31,4 +31,8 @@ class Pwm(gpio: GpioController) {
     fun max()  {
         pwm.pwm = 1000
     }
+
+    fun percent(value: Float) {
+        pwm.pwm = (value * 1000).toInt()
+    }
 }
