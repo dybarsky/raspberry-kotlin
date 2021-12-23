@@ -1,10 +1,7 @@
 @file:JvmName("App")
 
 import com.pi4j.io.gpio.GpioFactory
-import gpio.Led
-import gpio.Pot
-import gpio.Pwm
-import gpio.Servo
+import gpio.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.runBlocking
@@ -15,20 +12,22 @@ fun main(args: Array<String>): Unit =
 
         val gpio = GpioFactory.getInstance()
 
-//      val nixie = Nixie()
-//      val servo = Servo(gpio)
 //      val led = Led(gpio)
-        val pwm = Pwm(gpio)
-        val pot = Pot()
-
-        pot.read {
-            pwm.percent(it)
-        }
-
 //      led.blinking()
-//      servo.demo()
+
+        val nixie = Nixie()
+        nixie.demo()
+
+//      val pwm = Pwm(gpio)
 //      pwm.demo()
-//      nixie.demo()
+
+//      val servo = Servo(gpio)
+//      servo.demo()
+
+//      val pot = Pot()
+//      pot.read {
+//          pwm.percent(it)
+//      }
     }
 
 private suspend fun Pot.read(callback: (Float) -> Unit) {
